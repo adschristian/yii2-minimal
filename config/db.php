@@ -1,9 +1,8 @@
 <?php
 
+use yii\db\Connection;
+
 return [
-    'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=yii2minimal',
-    'username' => 'root',
-    'password' => '',
-    'charset' => 'utf8',
+    'class' => Connection::class,
+    'dsn' => 'sqlite:@app/db.sqlite',
 ];
