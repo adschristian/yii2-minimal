@@ -5,10 +5,10 @@ use app\components\web\Request;
 use yii\caching\FileCache;
 use yii\log\FileTarget;
 
-$params = require(__DIR__ . '/params.php');
+$params = require __DIR__ . '/params.php';
 
 $config = [
-    'id' => 'minimal',
+    'id' => env('APP_ID', 'minimal'),
     'basePath' => dirname(__DIR__),
     'bootstrap' => [
         'log',
@@ -19,7 +19,10 @@ $config = [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
+        '@db' => $params['db.path'],
     ],
+    'controllerNamespace' => 'app\controllers',
+    'container' => require __DIR__ . '/container.php',
     'components' => [
         'request' => [
             'class' => Request::class,
@@ -36,7 +39,7 @@ $config = [
                 ],
             ],
         ],
-        'db' => require(__DIR__ . '/db.php'),
+        'db' => require __DIR__ . '/db.php',
         'urlManager' => [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => true,

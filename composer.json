@@ -18,12 +18,16 @@
     "require": {
         "php": ">=7.4",
         "yiisoft/yii2": "~2.0.16",
-        "vlucas/phpdotenv": "^5.5"
+        "vlucas/phpdotenv": "^5.5",
+        "guzzlehttp/guzzle": "^7.6"
     },
     "autoload": {
         "psr-4": {
             "app\\": ""
-        }
+        },
+        "files": [
+            "config/functions.php"
+        ]
     },
     "config": {
         "process-timeout": 1800,

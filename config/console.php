@@ -1,29 +1,35 @@
 <?php
 
-$params = require(__DIR__ . '/params.php');
+use yii\caching\FileCache;
+use yii\log\FileTarget;
+
+$params = require __DIR__ . '/params.php';
 
 return [
     'id' => 'minimal-console',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'app\commands',
+    'controllerMap' => require __DIR__ . '/controller-map.php',
+    'container' => require __DIR__ . '/container.php',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
+        '@db' => $params['db.path'],
     ],
     'components' => [
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+            'class' => FileCache::class,
         ],
         'log' => [
             'targets' => [
                 [
-                    'class' => 'yii\log\FileTarget',
+                    'class' => FileTarget::class,
                     'levels' => ['error', 'warning'],
                 ],
             ],
         ],
-        'db' => require(__DIR__ . '/db.php'),
+        'db' => require __DIR__ . '/db.php',
     ],
     'params' => $params,
 ];

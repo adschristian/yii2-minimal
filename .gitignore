@@ -28,3 +28,5 @@ composer.phar
 .vagrant
 
 db.sqlite
+
+web/uploads
